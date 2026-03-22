@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matikanefukukitaru | Portfolio</title>
+  <style>
+    :root {
+      --bg: #fffaf7;
+      --panel: #ffffff;
+      --panel-2: #fff1ea;
+      --text: #3b2417;
+      --muted: #7a5a4a;
+      --accent: #ef4444;
+      --accent-2: #2563eb;
+      --accent-3: #f59e0b;
+      --border: rgba(180, 92, 32, 0.15);
+      --shadow: 0 18px 45px rgba(190, 106, 52, 0.12);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #fffdfb, #fff6f0 45%, #fffaf7);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: white;
+      outline: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    .hero {
+      min-height: 82vh;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 28px;
+      padding: 28px 0;
+    }
+
+    .hero-text,
+    .hero-card,
+    .section-card,
+    .project-card,
+    .contact-card {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-text {
+      padding: 38px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 6vw, 4.3rem);
+      line-height: 1.08;
+      margin-bottom: 16px;
+    }
+
+    .hero-text p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 22px;
+      max-width: 60ch;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(239, 68, 68, 0.18);
+      background: linear-gradient(135deg, #ff8a3d, #ef4444);
+      color: white;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn.secondary {
+      background: white;
+      color: #2563eb;
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+
+    .btn:hover,
+    .btn:focus {
+      transform: translateY(-2px);
+      opacity: 0.95;
+      outline: none;
+    }
+
+    .hero-card {
+      padding: 24px;
+    }
+
+    .hero-card img {
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+
+    .hero-card h2 {
+      margin-bottom: 6px;
+      font-size: 1.3rem;
+    }
+
+    .hero-card p {
+      color: var(--muted);
+    }
+
+    section {
+      margin-top: 28px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .section-card {
+      padding: 28px;
+    }
+
+    .skills-grid,
+    .projects-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 16px;
+    }
+
+    .skill-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .skill-box h3 {
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .skill-box p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .projects-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .project-card {
+      overflow: hidden;
+    }
+
+    .project-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    .project-content {
+      padding: 18px;
+    }
+
+    .project-content h3 {
+      margin-bottom: 8px;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 0.82rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(37, 99, 235, 0.18);
+      color: #8a3a14;
+    }
+
+    .contact-card {
+      padding: 28px;
+      text-align: center;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      margin: 12px auto 18px;
+      max-width: 60ch;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .projects-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-text,
+      .hero-card,
+      .section-card,
+      .contact-card {
+        padding: 20px;
+      }
+
+      .button-row {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Main navigation">
+      <div class="brand">Matikanefukukitaru</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero reveal" id="home">
+      <div class="hero-text">
+        <div class="eyebrow">Orange energy · red and blue accents</div>
+        <h1>Hello, I'm Matikanefukukitaru.</h1>
+        <p>
+          Welcome to my bright and playful portfolio website. This space shows off my style, my projects, and the web skills I am building with HTML, CSS, and JavaScript.
+        </p>
+        <div class="button-row">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn secondary" href="#contact">Contact Me</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Profile card">
+        <img src="/mnt/data/Matikanefukukitaru_(Proto).png" alt="Anime-style portrait of Matikanefukukitaru with orange hair and red-blue accents" />
+        <h2>Bright, bold, and full of personality</h2>
+        <p>I enjoy creating fun websites with cheerful colors, clean layouts, and interactive touches that make each page feel alive.</p>
+      </aside>
+    </section>
+
+    <section id="about" class="reveal">
+      <div class="section-card">
+        <h2 class="section-title">About Me</h2>
+        <p>
+          I am currently learning front-end web development and exploring ways to make websites feel more playful, expressive, and polished. My goal is to build pages that are accessible, responsive, and full of personality.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills" class="reveal">
+      <div class="section-card">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+          <article class="skill-box">
+            <h3>HTML</h3>
+            <p>Strong structure, semantic sections, accessibility features, and clean organization for every page I build.</p>
+          </article>
+          <article class="skill-box">
+            <h3>CSS</h3>
+            <p>Light mode layouts, bold color palettes, responsive design, and polished details that bring personality to the page.</p>
+          </article>
+          <article class="skill-box">
+            <h3>JavaScript</h3>
+            <p>Interactive buttons, dynamic text changes, scroll effects, and small touches that make a website feel more alive.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="reveal">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Laptop showing a coding project on screen" />
+          <div class="project-content">
+            <h3>Character-Inspired Portfolio</h3>
+            <p>A themed portfolio page with a fun light-mode design built around orange, red, and blue accents.</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="A responsive website displayed across devices" />
+          <div class="project-content">
+            <h3>Responsive Layout Demo</h3>
+            <p>A flexible layout that stays clean and readable across desktop, tablet, and mobile screens.</p>
+            <div class="tag-row">
+              <span class="tag">Responsive</span>
+              <span class="tag">Flexbox</span>
+              <span class="tag">Grid</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=80" alt="Developer workspace with monitor and keyboard" />
+          <div class="project-content">
+            <h3>Interactive Message Card</h3>
+            <p>A JavaScript-powered section that responds to clicks and adds a fun little surprise for visitors.</p>
+            <div class="tag-row">
+              <span class="tag">DOM</span>
+              <span class="tag">Events</span>
+              <span class="tag">UI</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="reveal">
+      <div class="contact-card">
+        <h2 class="section-title">Contact</h2>
+        <p id="contact-text">You can reach me through email or GitHub. Click the button below for a fun message.</p>
+        <button class="btn" id="messageBtn" type="button">Cheer Me On</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Matikanefukukitaru. Built with HTML, CSS, and JavaScript.</p>
+  </footer>
+
+  <script>
+    const messageBtn = document.getElementById('messageBtn');
+    const contactText = document.getElementById('contact-text');
+    const revealElements = document.querySelectorAll('.reveal');
+
+    messageBtn.addEventListener('click', function () {
+      contactText.textContent = 'Thanks for visiting my portfolio. Matikanefukukitaru says keep going and make something awesome today!';
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
